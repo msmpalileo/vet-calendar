@@ -1,0 +1,11 @@
+$primary-color: #1c1c1e;
+$accent-color: #ff630b;
+$button-bg-hover: #282828;
+$base-transition: 0.2s linear all;
+
+:export {
+  primaryColor: $primary-color;
+  accentColor: $accent-color;
+  buttonBgHover: $button-bg-hover;
+  baseTransition: $base-transition;
+}

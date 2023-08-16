@@ -1,0 +1,34 @@
+@import "./variables.module.scss";
+
+.navLink {
+  height: 60px;
+  padding-left: 42px;
+  display: flex;
+  transition: $base-transition;
+
+  &:hover {
+    background: $button-bg-hover;
+    border-right: 4px solid $accent-color;
+    transition: $base-transition;
+
+    > div {
+      transition: $base-transition;
+
+      svg,
+      path {
+        stroke: $accent-color;
+      }
+    }
+  }
+
+  > div {
+    display: flex;
+    color: $accent-color;
+    transition: $base-transition;
+
+    svg,
+    path {
+      stroke: white;
+    }
+  }
+}
