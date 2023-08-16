@@ -12,6 +12,8 @@ const config: Config = {
         "primary-color": "#1c1c1e",
         "accent-color": "#ff630b",
         "button-bg-hover": "#282828",
+        "light-gray": "#8D8D8E",
+        "dark-gray": "#323234",
       },
     },
   },
