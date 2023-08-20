@@ -5,19 +5,19 @@ import Image from "next/image";
 import Link from "next/link";
 
 //Assets
-import LogoIcon from "../assets/images/logo.svg";
-import HomeIcon from "../assets/images/navigation/home";
-import AppointmentsIcon from "../assets/images/navigation/appointments";
-import MessagesIcon from "../assets/images/navigation/messages";
-import ContactsIcon from "../assets/images/navigation/contacts";
-import DataIcon from "../assets/images/navigation/data";
-import SubscriptionIcon from "../assets/images/navigation/subscription";
-import HelpIcon from "../assets/images/navigation/help";
-import SettingsIcon from "../assets/images/navigation/settings";
-import DoubleChevronIcon from "../assets/images/navigation/double-chevron.svg";
+import LogoIcon from "@/assets/images/logo.svg";
+import HomeIcon from "@/assets/images/navigation/home";
+import AppointmentsIcon from "@/assets/images/navigation/appointments";
+import MessagesIcon from "@/assets/images/navigation/messages";
+import ContactsIcon from "@/assets/images/navigation/contacts";
+import DataIcon from "@/assets/images/navigation/data";
+import SubscriptionIcon from "@/assets/images/navigation/subscription";
+import HelpIcon from "@/assets/images/navigation/help";
+import SettingsIcon from "@/assets/images/navigation/settings";
+import DoubleChevronIcon from "@/assets/images/navigation/double-chevron.svg";
 
 //Styles
-import styles from "../styles/components.module.scss";
+import styles from "@/styles/components.module.scss";
 
 const SideBar = () => {
   const [isMini, setIsMini] = useState(false);
@@ -83,14 +83,14 @@ const SideBar = () => {
   };
 
   return (
-    <main
+    <aside
       className='bg-primary-color flex flex-col transition-all duration-200 ease-linear'
       style={{
         width: isMini ? "120px" : "240px",
       }}
     >
       <div
-        className='flex flex-col justify-center align-middle border-b border-b-secondarborder-t-light-gray'
+        className='flex flex-col justify-center align-middle border-b border-gray'
         style={{
           height: "114px",
         }}
@@ -128,7 +128,7 @@ const SideBar = () => {
       </div>
       <div className='mt-auto'>
         <hr
-          className={`mx-auto border-t border-t-light-gray ${
+          className={`mx-auto border-t border-t-gray ${
             isMini ? "w-100" : "w-11/12"
           }`}
         />
@@ -140,10 +140,10 @@ const SideBar = () => {
             width={20}
             className='mx-auto'
           />
-          <p className='text-light-gray text-xs mt-3'>&copy; Lorem 2023</p>
+          <p className='text-gray text-xs mt-3'>&copy; Lorem 2023</p>
         </div>
       </div>
-    </main>
+    </aside>
   );
 };
 

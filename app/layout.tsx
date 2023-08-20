@@ -4,7 +4,11 @@ import { Urbanist } from "next/font/google";
 const urbanist = Urbanist({ subsets: ["latin"] });
 
 //Components
-import SideBar from "./components/sidebar";
+import SideBar from "@/components/sidebar";
+import Header from "@/components/header";
+
+//Context
+import DateContextProvider from "./utils/context/dateContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,9 +23,14 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${urbanist.className} bg-white`}>
-        <div className='flex'>
+        <div className='flex h-screen'>
           <SideBar />
-          {children}
+          <DateContextProvider>
+            <div className="grow">
+              <Header />
+              {children}
+            </div>
+          </DateContextProvider>
         </div>
       </body>
     </html>

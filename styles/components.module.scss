@@ -1,0 +1,154 @@
+@import "./variables.module.scss";
+
+.navLinkWrapper:first-child .navLink,
+.navLinkWrapper:nth-child(6) .navLink {
+  &:hover {
+    svg,
+    path {
+      fill: none;
+      stroke: $accent-color;
+    }
+  }
+}
+
+.navLink {
+  height: 60px;
+  padding-left: 50px;
+  display: flex;
+  transition: $base-transition;
+
+  &:hover {
+    background: $primary-light-color;
+    border-right: 4px solid $accent-color;
+    transition: $base-transition;
+
+    > div {
+      transition: $base-transition;
+      color: $accent-color;
+
+      svg,
+      path {
+        fill: $accent-color;
+        transition: $base-transition;
+      }
+    }
+  }
+
+  > div {
+    transition: $base-transition;
+    color: white;
+
+    svg,
+    path {
+      transition: $base-transition;
+    }
+  }
+}
+
+.buttonMinimize {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 220px;
+  height: 36px;
+  width: 36px;
+  background-color: $dark-gray-color;
+  border-radius: 8px;
+  transition: $base-transition;
+  z-index: 999;
+
+  img {
+    margin: 0 auto;
+  }
+}
+
+.buttonIsMinized {
+  left: 100px;
+  transform: scaleX(-1) translateY(-20px);
+  transition: $base-transition;
+  transform-origin: 20px 0;
+}
+
+.header {
+  height: 114px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 40px;
+  align-items: center;
+  border-bottom: 2px solid $light-gray-color;
+}
+
+.searchBar {
+  background: $light-gray-color;
+  padding: 12px 20px;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 20px;
+  top: 12px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+
+  img {
+    margin-right: 12px;
+  }
+}
+
+.iconButton {
+  padding: 16px;
+  background-color: $light-gray-color;
+  margin-right: 12px;
+  border-radius: 50%;
+  transition: $base-transition;
+
+  svg,
+  path {
+    transition: $base-transition;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    background: $light-orange-color;
+    transition: $base-transition;
+
+    svg,
+    path {
+      stroke: $accent-color;
+      transition: $base-transition;
+    }
+  }
+}
+
+.mainButton {
+  background: $accent-color;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  height: fit-content;
+  transition: $base-transition;
+  font-weight: 500;
+  
+  &:hover {
+    background: $dark-orange-color;
+    transition: $base-transition;
+  }
+
+  &:active {
+    background: $light-orange-color;
+    color: $accent-color;
+    transition: $base-transition;
+  }
+}
+
+.hollowButton {
+
+}

@@ -1,4 +1,4 @@
-import { IconTypes } from "@/app/types/navigation";
+import { IconTypes } from "@/types/navigation";
 
 const messagesIcon = ({ className, fill }: IconTypes) => (
   <svg

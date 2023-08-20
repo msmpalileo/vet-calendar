@@ -1,4 +1,4 @@
-import { IconTypes } from "@/app/types/navigation";
+import { IconTypes } from "@/types/navigation";
 
 const homeIcon = ({ className, fill }: IconTypes) => (
   <svg
