@@ -14,6 +14,8 @@ type DateContextType = {
   nextDay: () => void;
   prevDay: () => void;
   today: () => void;
+  startOfDay: number;
+  endOfDay: number;
 }
 
 type DateProviderProps = {
@@ -30,6 +32,8 @@ export const DateContext = createContext<DateContextType>({
   nextDay: () => {},
   prevDay: () => {},
   today: () => {},
+  startOfDay: 5,
+  endOfDay: 18,
 })
 
 const SessionProvider = (props: DateProviderProps) => {
@@ -37,6 +41,8 @@ const SessionProvider = (props: DateProviderProps) => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [stringDate, setStringDate] = useState<string>("");
   const [month, setMonth] = useState<string>("");
+  const startOfDay =  5;
+  const endOfDay = 18;
 
   useEffect(() => {
     if(currentDate) {
@@ -61,6 +67,8 @@ const SessionProvider = (props: DateProviderProps) => {
     yesterday.setDate(yesterday.getDate() - 1);
     setCurrentDate(yesterday);
     updateStringDate(yesterday);
+    let sam = yesterday.toUTCString();
+    console.log(sam)
   }
 
   const today = () => {
@@ -79,6 +87,8 @@ const SessionProvider = (props: DateProviderProps) => {
     nextDay,
     prevDay,
     today,
+    startOfDay,
+    endOfDay,
   }
 
   return (

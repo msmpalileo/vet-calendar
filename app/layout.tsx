@@ -9,6 +9,7 @@ import Header from "@/components/header";
 
 //Context
 import DateContextProvider from "./utils/context/dateContext";
+import AppointmentsContextProvider from "./utils/context/appointmentsContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,14 +23,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={`${urbanist.className} bg-white`}>
+      <body className={`${urbanist.className} bg-white overflow-hidden`}>
         <div className='flex h-screen'>
           <SideBar />
           <DateContextProvider>
-            <div className="grow">
-              <Header />
-              {children}
-            </div>
+            <AppointmentsContextProvider>
+              <div className="grow">
+                <Header />
+                {children}
+              </div>
+            </AppointmentsContextProvider>
           </DateContextProvider>
         </div>
       </body>

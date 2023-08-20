@@ -152,3 +152,36 @@
 .hollowButton {
 
 }
+
+.scheduleConsultation {
+  border: 2px solid $consultation-color;
+  background: $consultation-accent-color;
+  border-radius: 12px;
+
+  svg, path {
+    stroke: $consultation-color;
+  }
+}
+
+.scheduleVaccination {
+  border: 2px solid $vaccination-color;
+  background: $vaccination-accent-color;
+  border-radius: 12px;
+
+  svg, path {
+    stroke: $vaccination-color;
+  }
+}
+
+.svgStrokePurple {
+  svg, path {
+    stroke: $consultation-color;
+  }
+}
+
+
+.svgFillOrange {
+  svg, path {
+    fill: $vaccination-color;
+  }
+}

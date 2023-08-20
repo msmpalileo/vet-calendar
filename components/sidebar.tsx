@@ -90,7 +90,7 @@ const SideBar = () => {
       }}
     >
       <div
-        className='flex flex-col justify-center align-middle border-b border-gray'
+        className='flex flex-col justify-center align-middle border-b border-gray-color'
         style={{
           height: "114px",
         }}
@@ -128,7 +128,7 @@ const SideBar = () => {
       </div>
       <div className='mt-auto'>
         <hr
-          className={`mx-auto border-t border-t-gray ${
+          className={`mx-auto border-t border-t-gray-color ${
             isMini ? "w-100" : "w-11/12"
           }`}
         />
@@ -140,7 +140,7 @@ const SideBar = () => {
             width={20}
             className='mx-auto'
           />
-          <p className='text-gray text-xs mt-3'>&copy; Lorem 2023</p>
+          <p className='text-gray-color text-xs mt-3'>&copy; Lorem 2023</p>
         </div>
       </div>
     </aside>

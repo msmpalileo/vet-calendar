@@ -1,0 +1,219 @@
+[
+  {
+    "id": "AAA",
+    "slots": [9, 10],
+    "appointmentDate": {
+      "start": "Sun, 20 Aug 2023 01:30:00 GMT",
+      "end": "Sun, 20 Aug 2023 02:00:00 GMT"
+    },
+    "appointmentType": "Vaccination",
+    "veterinary": {
+      "veterinary_name": "Anika Perry",
+      "address": "4517 Washington Avenue, Manchester, Kentucky 39495",
+      "building": "Green Bow Vett",
+      "contact_number": "+63 0123 123",
+      "image": "http://www.fillster.com/images/pictures/766s.jpg"
+    },
+    "client": {
+      "name": "Eminem",
+      "contact": "+63 0989 873",
+      "image": "http://www.fillster.com/images/pictures/763o.jpg"
+    },
+    "pet": {
+      "name": "Rap God",
+      "type": "Dog",
+      "breed": "French Bulldog",
+      "age": {
+        "years": "1",
+        "months": "3"
+      },
+      "image": "http://www.fillster.com/images/pictures/10p.jpg"
+    }
+  },
+  {
+    "id": "BBB",
+    "slots": [4],
+    "appointmentDate": {
+      "start": "Sun, 20 Aug 2023 23:00:00 GMT",
+      "end": "Sun, 20 Aug 2023 23:30:00 GMT"
+    },
+    "appointmentType": "Consultation",
+    "veterinary": {
+      "veterinary_name": "Danica Jane",
+      "address": "4517 Washington Avenue, Manchester, Kentucky 39495",
+      "building": "Green Bow Vett",
+      "contact_number": "+63 0123 123",
+      "image": "http://www.fillster.com/images/pictures/766s.jpg"
+    },
+    "client": {
+      "name": "James Reid",
+      "contact": "+63 0989 873",
+      "image": "http://www.fillster.com/images/pictures/763o.jpg"
+    },
+    "pet": {
+      "name": "Red",
+      "type": "Dog",
+      "breed": "French Bulldog",
+      "age": {
+        "years": "1",
+        "months": "3"
+      },
+      "image": "http://www.fillster.com/images/pictures/10p.jpg"
+    }
+  },
+  {
+    "id": "CCC",
+    "slots": [5, 6, 7],
+    "appointmentDate": {
+      "start": "Sun, 20 Aug 2023 23:30:00 GMT",
+      "end": "Sun, 20 Aug 2023 01:00:00 GMT"
+    },
+    "appointmentType": "Consultation",
+    "veterinary": {
+      "veterinary_name": "John Fins",
+      "address": "4517 Washington Avenue, Manchester, Kentucky 39495",
+      "building": "Green Bow Vett",
+      "contact_number": "+63 0123 123",
+      "image": "http://www.fillster.com/images/pictures/766s.jpg"
+    },
+    "client": {
+      "name": "Henry Cavil",
+      "contact": "+63 0989 873",
+      "image": "http://www.fillster.com/images/pictures/763o.jpg"
+    },
+    "pet": {
+      "name": "Superdog",
+      "type": "Dog",
+      "breed": "French Bulldog",
+      "age": {
+        "years": "1",
+        "months": "3"
+      },
+      "image": "http://www.fillster.com/images/pictures/10p.jpg"
+    }
+  },
+  {
+    "id": "DDD",
+    "slots": [12, 13, 14],
+    "appointmentDate": {
+      "start": "Mon, 21 Aug 2023 03:00:00 GMT",
+      "end": "Mon, 21 Aug 2023 04:30:00 GMT"
+    },
+    "appointmentType": "Vaccination",
+    "veterinary": {
+      "veterinary_name": "John Fins",
+      "address": "4517 Washington Avenue, Manchester, Kentucky 39495",
+      "building": "Green Bow Vett",
+      "contact_number": "+63 0123 123",
+      "image": "http://www.fillster.com/images/pictures/766s.jpg"
+    },
+    "client": {
+      "name": "Jonathan Arbuckle",
+      "contact": "+63 0989 873",
+      "image": "http://www.fillster.com/images/pictures/763o.jpg"
+    },
+    "pet": {
+      "name": "Garfield",
+      "type": "Cat",
+      "breed": "Just a cat",
+      "age": {
+        "years": "1",
+        "months": "3"
+      },
+      "image": "http://www.fillster.com/images/pictures/10p.jpg"
+    }
+  },
+  {
+    "id": "EEE",
+    "slots": [12, 13, 14],
+    "appointmentDate": {
+      "start": "Sat, 19 Aug 2023 03:00:00 GMT",
+      "end": "Sat, 19 Aug 2023 04:30:00 GMT"
+    },
+    "appointmentType": "Vaccination",
+    "veterinary": {
+      "veterinary_name": "Anika Perry",
+      "address": "4517 Washington Avenue, Manchester, Kentucky 39495",
+      "building": "Green Bow Vett",
+      "contact_number": "+63 0123 123",
+      "image": "http://www.fillster.com/images/pictures/766s.jpg"
+    },
+    "client": {
+      "name": "Jonathan Arbuckle",
+      "contact": "+63 0989 873",
+      "image": "http://www.fillster.com/images/pictures/763o.jpg"
+    },
+    "pet": {
+      "name": "Garfield",
+      "type": "Cat",
+      "breed": "Just a cat",
+      "age": {
+        "years": "1",
+        "months": "3"
+      },
+      "image": "http://www.fillster.com/images/pictures/10p.jpg"
+    }
+  },
+  {
+    "id": "FFF",
+    "slots": [6, 7, 8],
+    "appointmentDate": {
+      "start": "Fri, 18 Aug 2023 00:00:00 GMT",
+      "end": "Fri, 18 Aug 2023 01:30:00 GMT"
+    },
+    "appointmentType": "Consultation",
+    "veterinary": {
+      "veterinary_name": "Anika Perry",
+      "address": "4517 Washington Avenue, Manchester, Kentucky 39495",
+      "building": "Green Bow Vett",
+      "contact_number": "+63 0123 123",
+      "image": "http://www.fillster.com/images/pictures/766s.jpg"
+    },
+    "client": {
+      "name": "Henry Cavil",
+      "contact": "+63 0989 873",
+      "image": "http://www.fillster.com/images/pictures/763o.jpg"
+    },
+    "pet": {
+      "name": "Superdog",
+      "type": "Dog",
+      "breed": "French Bulldog",
+      "age": {
+        "years": "1",
+        "months": "3"
+      },
+      "image": "http://www.fillster.com/images/pictures/10p.jpg"
+    }
+  },
+  {
+    "id": "GGG",
+    "slots": [6, 7, 8],
+    "appointmentDate": {
+      "start": "Thu, 17 Aug 2023 00:00:00 GMT",
+      "end": "Thu, 17 Aug 2023 01:30:00 GMT"
+    },
+    "appointmentType": "Vaccination",
+    "veterinary": {
+      "veterinary_name": "John Fins",
+      "address": "4517 Washington Avenue, Manchester, Kentucky 39495",
+      "building": "Green Bow Vett",
+      "contact_number": "+63 0123 123",
+      "image": "http://www.fillster.com/images/pictures/766s.jpg"
+    },
+    "client": {
+      "name": "Eminem",
+      "contact": "+63 0989 873",
+      "image": "http://www.fillster.com/images/pictures/763o.jpg"
+    },
+    "pet": {
+      "name": "Rap God",
+      "type": "Dog",
+      "breed": "French Bulldog",
+      "age": {
+        "years": "1",
+        "months": "3"
+      },
+      "image": "http://www.fillster.com/images/pictures/10p.jpg"
+    }
+  }
+]
