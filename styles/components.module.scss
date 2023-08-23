@@ -147,16 +147,61 @@
     color: $accent-color;
     transition: $base-transition;
   }
+
+  &:disabled {
+    opacity: 50%;
+  }
 }
 
 .hollowButton {
+  color: $gray-color;
+  padding: 12px 20px;
+  border-radius: 12px;
+  height: fit-content;
+  transition: $base-transition;
+  font-weight: 500;
+  border: 1px solid $gray-color;
+  
+  &:hover {
+    background: $dark-orange-color;
+    border-color: $dark-orange-color;
+    color: white;
+    transition: $base-transition;
+  }
 
+  &:active {
+    background: $light-orange-color;
+    color: $accent-color;
+    border-color: $light-orange-color;
+    transition: $base-transition;
+  }
 }
 
 .scheduleConsultation {
   border: 2px solid $consultation-color;
   background: $consultation-accent-color;
   border-radius: 12px;
+  transition: $base-transition;
+
+  p {
+    transition: $base-transition;
+  }
+
+  &:hover {
+    p {
+      color: $consultation-color;
+      transition: $base-transition;
+    }
+  }
+
+  button {
+    transition: $base-transition;
+    
+    &:hover {
+      opacity: 50%;
+      transition: $base-transition;
+    }
+  }
 
   svg, path {
     stroke: $consultation-color;
@@ -167,6 +212,27 @@
   border: 2px solid $vaccination-color;
   background: $vaccination-accent-color;
   border-radius: 12px;
+  transition: $base-transition;
+
+  p {
+    transition: $base-transition;
+  }
+
+  &:hover {
+    p {
+      color: $vaccination-color;
+      transition: $base-transition;
+    }
+  }
+
+  button {
+    transition: $base-transition;
+    
+    &:hover {
+      opacity: 50%;
+      transition: $base-transition;
+    }
+  }
 
   svg, path {
     stroke: $vaccination-color;
@@ -183,5 +249,93 @@
 .svgFillOrange {
   svg, path {
     fill: $vaccination-color;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .modalBody {
+    position: relative;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+  }
+
+  .modalBackground {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 500vh;
+    height: 500vh;
+    background: $dark-gray-color;
+    opacity: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  // &::before {
+  //   content: '';
+  //   position: fixed;
+  //   top: 0;
+  //   right: 0;
+  //   left: 0;
+  //   bottom: 0;
+  //   width: 200vh;
+  //   height: 200vh;
+  //   background: $dark-gray-color;
+  //   opacity: 50%;
+  //   transform: translate(-50%, -50%);
+  // }
+}
+
+.vetButton {
+  display: flex;
+  border: 1px solid $gray-color;
+  border-radius: 12px;
+  width: calc(100% / 2 - 5px);
+  flex: 0 0 calc(100% / 2 - 5px);
+  padding: 20px;
+  background: $vaccination-accent-color;
+  border: 1px solid $vaccination-color;
+  transition: $base-transition;
+
+  &:hover {
+    color: $vaccination-color;
+    transition: $base-transition;
+  }
+}
+
+.vetButtonActive {
+  background: $vaccination-color;
+  color: white;
+
+  &:hover {
+    // background: $vaccination-accent-color;
+    color: white;
+  }
+}
+
+.datePicker {
+  width: 100%;
+  > div {
+    width: 100%;
+    // margin: 0;
+
+    div:nth-child(2) {
+      z-index: 20;
+    }
+  }
+
+  input {
+    height: 42px;
+    border: 1px solid $gray-color !important;
+    width: 100%;
+    border-radius: 0.5rem !important;
+    padding-left: 20px;
   }
 }

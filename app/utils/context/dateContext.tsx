@@ -1,8 +1,12 @@
 "use client"
 import { createContext, useState, useEffect } from "react";
+import moment from "moment";
 
 //Assets
 import monthsList from "@/assets/constants/months.json";
+
+//Utils
+import { getSlots } from "../utils";
 
 type DateContextType = {
   currentDate: Date;
@@ -16,6 +20,7 @@ type DateContextType = {
   today: () => void;
   startOfDay: number;
   endOfDay: number;
+  slots: any[];
 }
 
 type DateProviderProps = {
@@ -34,6 +39,7 @@ export const DateContext = createContext<DateContextType>({
   today: () => {},
   startOfDay: 5,
   endOfDay: 18,
+  slots: [],
 })
 
 const SessionProvider = (props: DateProviderProps) => {
@@ -43,6 +49,9 @@ const SessionProvider = (props: DateProviderProps) => {
   const [month, setMonth] = useState<string>("");
   const startOfDay =  5;
   const endOfDay = 18;
+  const slots: object[] = getSlots(currentDate);
+
+  
 
   useEffect(() => {
     if(currentDate) {
@@ -67,8 +76,6 @@ const SessionProvider = (props: DateProviderProps) => {
     yesterday.setDate(yesterday.getDate() - 1);
     setCurrentDate(yesterday);
     updateStringDate(yesterday);
-    let sam = yesterday.toUTCString();
-    console.log(sam)
   }
 
   const today = () => {
@@ -89,6 +96,7 @@ const SessionProvider = (props: DateProviderProps) => {
     today,
     startOfDay,
     endOfDay,
+    slots,
   }
 
   return (

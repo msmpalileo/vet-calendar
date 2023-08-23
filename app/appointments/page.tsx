@@ -24,6 +24,7 @@ import { AppointmentsContext } from "../utils/context/appointmentsContext";
 
 //Components
 import AppointmentDetails from "@/components/appointmentDetails";
+import AppointmentsForm from "@/components/appointmentsForm";
 
 export default function Appointments() {
   const {
@@ -33,38 +34,19 @@ export default function Appointments() {
     prevDay,
     month,
     today,
-    startOfDay,
-    endOfDay,
+    slots,
   } = useContext(DateContext);
 
   const {
     appointments,
     selectedAppointment,
     setSelectedAppointment,
+    setViewAppointmentDetails,
+    setShowAppointmentForm,
   } = useContext(AppointmentsContext);
   
 
   const ShowCalendar = () => {
-    const start = moment(currentDate).startOf('day').add(startOfDay, 'hours');
-    const end = moment(currentDate).startOf('day').add(endOfDay, 'hours');
-    const schedules: any[] = [];
-
-    while(start.hour() <= end.hour()) {
-      schedules.push(start.toString());
-      start.add(30, 'minutes');
-    }
-    schedules.pop();
-
-    const slots: any[] = [];
-    for(let x = 0; x <= schedules.length; x++) {
-      slots.push({
-        number: x,
-        start: schedules[x],
-        end: schedules[x+1],
-      })
-    }
-    slots.splice(slots.length-2, 2);
-
     const mapTimeSlots = () => {
       return slots.map((slot, index) => {
         if(slot.number % 2 === 0) {
@@ -103,10 +85,6 @@ export default function Appointments() {
       return slots.map((slot) => {
         const appointment: AppointmentTypes = appointments.find(appointment => appointment.slots[0] === slot.number && moment(appointment.appointmentDate.start).startOf('day').toString() === moment(currentDate).startOf('day').toString())!;
 
-        // if(appointment) {
-        //   console.log(`${moment(appointment.appointmentDate.start).toString()} : ${moment(currentDate).toString()} : ${moment(appointment.appointmentDate.start).startOf('day').toString() === moment(currentDate).startOf('day').toString()}`);
-        // }
-
         return (
           <div key={slot.number} 
             className={`border-light-gray-color bg-transparent h-16 overflow-visible ${slot.number % 2 === 0 ? "" : "border-b"}`}
@@ -120,10 +98,16 @@ export default function Appointments() {
               {appointment && (
                 <div className="flex relative z-50">
                   {getIcon(appointment?.appointmentType)}
-                  <div className={`flex flex-grow align-middle ${appointment?.slots.length > 1 ? "flex-col" : ""}`}>
+                  <div className={`flex flex-grow align-middle cursor-pointer ${appointment?.slots.length > 1 ? "flex-col" : ""}`}
+                    onClick={() => {
+                      if(appointment) {
+                        setSelectedAppointment(appointment);
+                        setViewAppointmentDetails(true);
+                      }
+                    }}>
                     <div className="flex flex-col align-middle justify-center mr-6">
-                      <p className="text-lg font-bold leading-3 mb-1 mt-2">{appointment?.appointmentType}</p>
-                      <span className="text-xs uppercase">{moment(new Date(appointment?.appointmentDate.start)).format("h:mm a")} - {moment(new Date(appointment?.appointmentDate.end)).format("h:mm a")}</span>
+                      <p className="text-lg text-left font-bold leading-3 mb-1 mt-2">{appointment?.appointmentType}</p>
+                      <span className="text-xs text-left uppercase">{moment(new Date(appointment?.appointmentDate.start)).format("h:mm a")} - {moment(new Date(appointment?.appointmentDate.end)).format("h:mm a")}</span>
                     </div>
                     <div className="mt-3 flex align-middle">
                       <PlusIcon className="mr-2"/> <span className="text-sm">{appointment?.veterinary.veterinary_name}</span> <UserIcon className="ml-6 mr-2"/> <span className="text-sm">{appointment?.client.name}</span> <BreedIcon className="ml-6 mr-2"/> <span className="text-sm">{appointment?.pet.name} ({appointment?.pet.type})</span>
@@ -155,35 +139,44 @@ export default function Appointments() {
   }
 
   return (
-    <main className='bg-white flex flex-col h-screen'>
-      <section className="flex py-5 px-10 border-b border-b-light-gray h-36">
-        <div>
-          <span className="text-gray">Appointments for {month}</span>
+    <>
+      <AppointmentsForm />
+      <main className='bg-white flex flex-col h-screen'>
+        <section className="flex py-5 px-10 border-b border-b-light-gray h-36">
           <div>
-            <span className="text-2xl font-bold mr-3">{stringDate}</span>
-            <button className={styles.iconButton} onClick={() => prevDay()}>
-              <ChevronLeftIcon />
-            </button>
-            <button className={styles.iconButton} onClick={() => nextDay()}>
-              <ChevronLeftIcon className="rotate-180"/>
-            </button>
+            <span className="text-gray">Appointments for {month}</span>
+            <div>
+              <span className="text-2xl font-bold mr-3">{stringDate}</span>
+              <button className={styles.iconButton} onClick={() => prevDay()}>
+                <ChevronLeftIcon />
+              </button>
+              <button className={styles.iconButton} onClick={() => nextDay()}>
+                <ChevronLeftIcon className="rotate-180"/>
+              </button>
+            </div>
+            {/* <span className="text-gray">{month}</span> */}
+            <button className="text-accent hover:text-accent-color text-xs" onClick={() => today()}>Jump to Today</button>
           </div>
-          {/* <span className="text-gray">{month}</span> */}
-          <button className="text-accent hover:text-accent-color text-xs" onClick={() => today()}>Jump to Today</button>
-        </div>
-        <button className={`${styles.mainButton} ml-auto my-auto`}>New Appointment</button>
-      </section>
-      <section className="flex">
-        <div className="overflow-y-scroll"
-          style={{
-            maxHeight: "calc(100vh - 114px - 144px)"
-          }}
-        >
-          {ShowCalendar()}
-        </div>
-        <AppointmentDetails {...selectedAppointment}/>
-      </section>
-    </main>
+          <button
+            className={`${styles.mainButton} ml-auto my-auto`}
+            onClick={() => setShowAppointmentForm(true)}
+          >
+            New Appointment
+          </button>
+        </section>
+        <section className="flex">
+          <div className="flex-grow overflow-y-scroll"
+            style={{
+              height: "calc(100vh - 114px - 144px)"
+            }}
+          >
+            {ShowCalendar()}
+          </div>
+          <AppointmentDetails {...selectedAppointment} />
+        </section>
+      </main>
+    </>
+    
   );
 }
   

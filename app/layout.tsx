@@ -23,6 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
+      <head>
+      <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.14.1/react-datepicker.min.css" />
+      </head>
       <body className={`${urbanist.className} bg-white overflow-hidden`}>
         <div className='flex h-screen'>
           <SideBar />

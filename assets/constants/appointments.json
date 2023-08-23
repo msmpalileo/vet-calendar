@@ -3,8 +3,8 @@
     "id": "AAA",
     "slots": [9, 10],
     "appointmentDate": {
-      "start": "Sun, 20 Aug 2023 01:30:00 GMT",
-      "end": "Sun, 20 Aug 2023 02:00:00 GMT"
+      "start": "Sun, 20 Aug 2023 09:30:00 GMT+0800",
+      "end": "Sun, 20 Aug 2023 010:30:00 GMT+0800"
     },
     "appointmentType": "Vaccination",
     "veterinary": {
@@ -17,7 +17,9 @@
     "client": {
       "name": "Eminem",
       "contact": "+63 0989 873",
-      "image": "http://www.fillster.com/images/pictures/763o.jpg"
+      "image": "http://www.fillster.com/images/pictures/763o.jpg",
+      "email": "some_email@gmail.com",
+      "address": "1st Avenue, Golden Street,Springville Village, San Diego, California"
     },
     "pet": {
       "name": "Rap God",
@@ -34,8 +36,8 @@
     "id": "BBB",
     "slots": [4],
     "appointmentDate": {
-      "start": "Sun, 20 Aug 2023 23:00:00 GMT",
-      "end": "Sun, 20 Aug 2023 23:30:00 GMT"
+      "start": "Sun, 20 Aug 2023 07:00:00 GMT+0800",
+      "end": "Sun, 20 Aug 2023 07:30:00 GMT+0800"
     },
     "appointmentType": "Consultation",
     "veterinary": {
@@ -48,6 +50,7 @@
     "client": {
       "name": "James Reid",
       "contact": "+63 0989 873",
+      "email": "some_email@gmail.com",
       "image": "http://www.fillster.com/images/pictures/763o.jpg"
     },
     "pet": {
@@ -65,8 +68,8 @@
     "id": "CCC",
     "slots": [5, 6, 7],
     "appointmentDate": {
-      "start": "Sun, 20 Aug 2023 23:30:00 GMT",
-      "end": "Sun, 20 Aug 2023 01:00:00 GMT"
+      "start": "Sun, 20 Aug 2023 07:30:00 GMT+0800",
+      "end": "Sun, 20 Aug 2023 09:00:00 GMT+0800"
     },
     "appointmentType": "Consultation",
     "veterinary": {
@@ -79,6 +82,7 @@
     "client": {
       "name": "Henry Cavil",
       "contact": "+63 0989 873",
+      "email": "some_email@gmail.com",
       "image": "http://www.fillster.com/images/pictures/763o.jpg"
     },
     "pet": {
@@ -96,8 +100,8 @@
     "id": "DDD",
     "slots": [12, 13, 14],
     "appointmentDate": {
-      "start": "Mon, 21 Aug 2023 03:00:00 GMT",
-      "end": "Mon, 21 Aug 2023 04:30:00 GMT"
+      "start": "Mon, 21 Aug 2023 11:00:00 GMT+0800",
+      "end": "Mon, 21 Aug 2023 12:30:00 GMT+0800"
     },
     "appointmentType": "Vaccination",
     "veterinary": {
@@ -110,6 +114,7 @@
     "client": {
       "name": "Jonathan Arbuckle",
       "contact": "+63 0989 873",
+      "email": "some_email@gmail.com",
       "image": "http://www.fillster.com/images/pictures/763o.jpg"
     },
     "pet": {
@@ -127,8 +132,8 @@
     "id": "EEE",
     "slots": [12, 13, 14],
     "appointmentDate": {
-      "start": "Sat, 19 Aug 2023 03:00:00 GMT",
-      "end": "Sat, 19 Aug 2023 04:30:00 GMT"
+      "start": "Sat, 19 Aug 2023 11:00:00 GMT+0800",
+      "end": "Sat, 19 Aug 2023 12:30:00 GMT+0800"
     },
     "appointmentType": "Vaccination",
     "veterinary": {
@@ -141,6 +146,7 @@
     "client": {
       "name": "Jonathan Arbuckle",
       "contact": "+63 0989 873",
+      "email": "some_email@gmail.com",
       "image": "http://www.fillster.com/images/pictures/763o.jpg"
     },
     "pet": {
@@ -158,8 +164,8 @@
     "id": "FFF",
     "slots": [6, 7, 8],
     "appointmentDate": {
-      "start": "Fri, 18 Aug 2023 00:00:00 GMT",
-      "end": "Fri, 18 Aug 2023 01:30:00 GMT"
+      "start": "Fri, 18 Aug 2023 08:00:00 GMT+0800",
+      "end": "Fri, 18 Aug 2023 09:30:00 GMT+0800"
     },
     "appointmentType": "Consultation",
     "veterinary": {
@@ -189,8 +195,8 @@
     "id": "GGG",
     "slots": [6, 7, 8],
     "appointmentDate": {
-      "start": "Thu, 17 Aug 2023 00:00:00 GMT",
-      "end": "Thu, 17 Aug 2023 01:30:00 GMT"
+      "start": "Thu, 17 Aug 2023 08:00:00 GMT+0800",
+      "end": "Thu, 17 Aug 2023 09:30:00 GMT+0800"
     },
     "appointmentType": "Vaccination",
     "veterinary": {
