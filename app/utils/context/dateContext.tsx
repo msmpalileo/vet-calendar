@@ -13,14 +13,26 @@ type DateContextType = {
   setCurrentDate: (value: Date) => void;
   stringDate: string;
   setStringDate: (value: string) => void;
-  month: string;
-  setMonth: (value: string) => void;
+  month: {
+    label: string;
+    number: number;
+    year?: number;
+  };
+  setMonth: (value: {
+    label: string;
+    number: number;
+    year?: number;
+  }) => void;
   nextDay: () => void;
   prevDay: () => void;
+  nextMonth: () => void;
+  prevMonth: () => void;
   today: () => void;
   startOfDay: number;
   endOfDay: number;
   slots: any[];
+  viewType: string;
+  setViewType: (value: string) => void;
 }
 
 type DateProviderProps = {
@@ -32,24 +44,40 @@ export const DateContext = createContext<DateContextType>({
   setCurrentDate: () => {},
   stringDate: "",
   setStringDate: () => {},
-  month: "",
+  month: {
+    label: "",
+    number: 0,
+  },
   setMonth: () => {},
   nextDay: () => {},
   prevDay: () => {},
+  nextMonth: () => {},
+  prevMonth: () => {},
   today: () => {},
   startOfDay: 5,
   endOfDay: 18,
   slots: [],
+  viewType: "",
+  setViewType: () => {},
 })
 
 const SessionProvider = (props: DateProviderProps) => {
   const { children } = props;
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [stringDate, setStringDate] = useState<string>("");
-  const [month, setMonth] = useState<string>("");
+  const [month, setMonth] = useState<{
+    label: string;
+    number: number;
+    year?: number;
+  }>({
+    label: monthsList[currentDate.getMonth()].label,
+    number: currentDate.getMonth(),
+    year: currentDate.getFullYear(),
+  });
   const startOfDay =  5;
   const endOfDay = 18;
   const slots: object[] = getSlots(currentDate);
+  const [viewType, setViewType] = useState("day");
 
   
 
@@ -57,11 +85,35 @@ const SessionProvider = (props: DateProviderProps) => {
     if(currentDate) {
       updateStringDate(currentDate);
     }
-  }, [currentDate, stringDate, month]);
+  }, [currentDate, stringDate]);
 
   const updateStringDate = (currentDate: Date) => {
     setStringDate(`${monthsList[currentDate.getMonth()].label} ${currentDate.getDate()}, ${currentDate.getFullYear()}`);
-    setMonth(monthsList[currentDate.getMonth()].label);
+    setMonth({
+      label: monthsList[currentDate.getMonth()].label,
+      number: currentDate.getMonth(),
+      year: currentDate.getFullYear(),
+    });
+  }
+
+  const nextMonth = () => {
+    let next = currentDate;
+    next.setMonth(next.getMonth() + 1);
+    setMonth({
+      label: `${monthsList[next.getMonth()].label}`,
+      number: next.getMonth(),
+      year: next.getFullYear(),
+    });
+  }
+
+  const prevMonth = () => {
+    let prev = currentDate;
+    prev.setMonth(prev.getMonth() - 1);
+    setMonth({
+      label: monthsList[prev.getMonth()].label,
+      number: prev.getMonth(),
+      year: prev.getFullYear(),
+    });
   }
 
   const nextDay = () => {
@@ -93,10 +145,14 @@ const SessionProvider = (props: DateProviderProps) => {
     setMonth,
     nextDay,
     prevDay,
+    nextMonth,
+    prevMonth,
     today,
     startOfDay,
     endOfDay,
     slots,
+    viewType,
+    setViewType,
   }
 
   return (

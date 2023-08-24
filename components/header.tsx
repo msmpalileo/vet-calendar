@@ -1,4 +1,7 @@
+'use client'
+
 import Image from "next/image";
+import { useContext } from 'react';
 
 //Styles
 import styles from "@/styles/components.module.scss";
@@ -11,11 +14,25 @@ import BellIcon from "@/assets/images/header/bell"
 import SettingsIcon from "@/assets/images/header/settings"
 import LogoutIcon from "@/assets/images/header/logout"
 
+//Context
+import { AppointmentsContext } from "@/app/utils/context/appointmentsContext";
+
 const Header = () => {
+  const {
+    searchValue,
+    setSearchValue,
+  } = useContext(AppointmentsContext);
+
   return (
     <header className={styles.header}>
         <div className="grow mr-10 flex relative">
-            <input type="text" placeholder="Search" className={styles.searchBar} />
+            <input 
+              type="text" 
+              placeholder="Search" 
+              className={styles.searchBar} 
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
             <Image
               src={SearchIcon}
               alt='Search'

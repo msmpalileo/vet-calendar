@@ -10,6 +10,7 @@ import Header from "@/components/header";
 //Context
 import DateContextProvider from "./utils/context/dateContext";
 import AppointmentsContextProvider from "./utils/context/appointmentsContext";
+import UtilsContextProvider from "./utils/context/utilsContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -31,10 +32,12 @@ export default function RootLayout({
           <SideBar />
           <DateContextProvider>
             <AppointmentsContextProvider>
-              <div className="grow">
-                <Header />
-                {children}
-              </div>
+              <UtilsContextProvider>
+                <div className="grow">
+                  <Header />
+                  {children}
+                </div>
+              </UtilsContextProvider>
             </AppointmentsContextProvider>
           </DateContextProvider>
         </div>

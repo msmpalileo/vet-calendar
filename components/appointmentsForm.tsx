@@ -53,7 +53,8 @@ const AppointmentsForm = () => {
     resetFormValues,
     isEdit,
     setIsEdit,
-    createAppointment
+    createAppointment,
+    setSelectedAppointment,
    } = useContext(AppointmentsContext);
 
    const {
@@ -98,6 +99,7 @@ const AppointmentsForm = () => {
     const payload: AppointmentTypes = {
       ...appointmentFormValues,
       id: appointmentFormValues.id || Math.floor(Math.random()*10000).toString(),
+      appointmentType: data.appointmentType,
       client: {
         contact: data.ownerContact,
         name: data.ownerName,
@@ -117,24 +119,54 @@ const AppointmentsForm = () => {
       slots: timeSlots,
     };
 
-    createAppointment(payload);
-    setShowAppointmentForm(false);
-    resetFormValues();
-    reset({
-      appointmentType: "",
-      veterinarian: "",
-      startTime: "",
-      endTime: "",
-      petName: "",
-      petType: "",
-      petBreed: "",
-      petYears: "",
-      petMonths: "",
-      petGender: "",
-      ownerName: "",
-      ownerContact: "",
-    });
-    setIsEdit(false);
+    let text = "Are you sure you want update appointment details?";
+    if (isEdit && confirm(text) == true) {
+      createAppointment(payload);
+      setSelectedAppointment(payload);
+      setShowAppointmentForm(false);
+      setAvailableScheduleSlots(appointmentFormValues.appointmentDate.date as string);
+      resetFormValues();
+      reset({
+        appointmentType: "",
+        veterinarian: "",
+        startTime: "",
+        endTime: "",
+        petName: "",
+        petType: "",
+        petBreed: "",
+        petYears: "",
+        petMonths: "",
+        petGender: "",
+        ownerName: "",
+        ownerContact: "",
+      });
+      setStartTime("");
+      setEndTime("");
+      setIsEdit(false);
+    } else {
+      createAppointment(payload);
+      setShowAppointmentForm(false);
+      setAvailableScheduleSlots(appointmentFormValues.appointmentDate.date as string);
+      resetFormValues();
+      reset({
+        appointmentType: "",
+        veterinarian: "",
+        startTime: "",
+        endTime: "",
+        petName: "",
+        petType: "",
+        petBreed: "",
+        petYears: "",
+        petMonths: "",
+        petGender: "",
+        ownerName: "",
+        ownerContact: "",
+      });
+      setStartTime("");
+      setEndTime("");
+      setIsEdit(false);
+    }
+
   };
    
   const updateValues = (value: any, key: string, subkey?: string) => {
@@ -161,11 +193,12 @@ const AppointmentsForm = () => {
    useEffect(() => {
     if(isEdit) {
       setTimeout(() => {
-        reset({
+        const existingValues = {
           appointmentType: appointmentType || "",
           veterinarian: veterinary.veterinary_name || "",
           startTime: activeSlots.length ? activeSlots[0].toString() : "",
-          endTime: activeSlots.length ? activeSlots[activeSlots.length - 1].toString() : "",
+          // endTime: activeSlots.length ? activeSlots[activeSlots.length - 1].toString() : "",
+          endTime: activeSlots.length === 1 ? (activeSlots[0] + 1).toString() : activeSlots[activeSlots.length - 1].toString(),
           petName: petName || "",
           petType: type || "",
           petBreed: breed || "",
@@ -174,23 +207,12 @@ const AppointmentsForm = () => {
           petGender: sex || "",
           ownerName: clientName || "",
           ownerContact: contact || "",
-        });
+        };
+        setStartTime(activeSlots.length ? activeSlots[0].toString() : "");
+        reset(existingValues);
+        setAvailableScheduleSlots(date as string);
         setSelectedDate(date as string);
       }, 200)
-      
-    console.log(appointmentFormValues);
-    console.log({appointmentType: appointmentType || "",
-    veterinarian: veterinary.veterinary_name || "",
-    startTime: activeSlots.length ? activeSlots[0].toString() : "",
-    endTime: activeSlots.length ? activeSlots[activeSlots.length - 1].toString() : "",
-    petName: petName || "",
-    petType: type || "",
-    petBreed: breed || "",
-    petYears: years || "",
-    petMonths: months || "",
-    petGender: sex || "",
-    ownerName: clientName || "",
-    ownerContact: contact || "",})
     } else {
       reset({
         appointmentType: "",
@@ -220,7 +242,7 @@ const AppointmentsForm = () => {
     const dateSlots = getSlots(selectedDate);
     setSelectedDateSlots([...dateSlots]);
 
-    const availableScheduleSlots = dateSlots.map(slot => {
+    let availableScheduleSlots = dateSlots.map(slot => {
       if(occupiedSlots.includes(slot.number as number)) {
         return {
           value: slot.number,
@@ -233,13 +255,25 @@ const AppointmentsForm = () => {
         value: slot.number,
         label: moment(slot.start).format("hh:mm a"),
       };
+    });
+
+    // If Editing, update availableScheduleSlots to include used data slots of the item being edited
+    const availableStartSlots = availableScheduleSlots.map((slot) => {
+      if(appointmentFormValues.slots.includes(slot.value as number)) {
+        return {
+          ...slot,
+          disabled: false,
+        }
+      }
+
+      return slot;
     })
 
     //Get index of first endTime
-    let endIndex = availableScheduleSlots.length - 1;
-    if(availableScheduleSlots.length && startTime) {
-      for(let x = parseInt(startTime); x < availableScheduleSlots.length; x++) {
-        if(availableScheduleSlots[x].disabled) {
+    let endIndex = availableStartSlots.length - 1;
+    if(availableStartSlots.length && startTime) {
+      for(let x = parseInt(startTime); x < availableStartSlots.length; x++) {
+        if(availableStartSlots[x].disabled) {
           endIndex = x;
           break;
         }
@@ -261,7 +295,7 @@ const AppointmentsForm = () => {
       };
     })
 
-    setStartSlots(availableScheduleSlots);
+    setStartSlots(availableStartSlots);
     setEndSlots(availableEndSlots);
    }
 

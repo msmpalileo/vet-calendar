@@ -16,6 +16,8 @@ import BreedIcon from "@/assets/images/main/breed";
 import PlusIcon from "@/assets/images/main/plus";
 import SexIcon from "@/assets/images/main/sex";
 import CalendarIcon from "@/assets/images/main/calendar";
+import BellIcon from "@/assets/images/header/bell";
+import VaccinationIcon from "@/assets/images/main/vaccination";
 
 //Styles
 import styles from '@/styles/components.module.scss';
@@ -23,7 +25,11 @@ import styles from '@/styles/components.module.scss';
 //Context
 import { AppointmentsContext } from "@/app/utils/context/appointmentsContext";
 
-const AppointmentDetails = (props: AppointmentTypes) => {
+interface AppointmentDetailsProps extends AppointmentTypes {
+  wrapperStyle?: {};
+}
+
+const AppointmentDetails = (props: AppointmentDetailsProps) => {
   const {
     id,
     slots,
@@ -32,14 +38,17 @@ const AppointmentDetails = (props: AppointmentTypes) => {
     veterinary,
     client,
     pet,
+    wrapperStyle,
   } = props;
 
   const {
     viewAppointmentDetails,
     setViewAppointmentDetails,
+    removeSelectedAppointment,
     setAppointmentFormValues,
     setShowAppointmentForm,
     setIsEdit,
+    deleteAppointment,
   } = useContext(AppointmentsContext);
 
   const openEditForm = () => {
@@ -60,11 +69,11 @@ const AppointmentDetails = (props: AppointmentTypes) => {
   }
 
   return (
-    <aside className="transition-all duration-200 ease-linear overflow-y-auto" style={{
+    <aside className="transition-all duration-200 ease-linear overflow-y-auto border-l border-l-light-gray-color absolute bg-white right-0" style={{
       width: '440px',
-      flex: '0 0 440px',
+      zIndex: 100,
       marginRight: !viewAppointmentDetails ? '-440px' : '',
-      height: "calc(100vh - 114px - 144px)"
+      ...wrapperStyle,
     }}>
       <div className="flex border-b border-light-gray-color py-5 px-10">
         {/* <Image
@@ -83,7 +92,9 @@ const AppointmentDetails = (props: AppointmentTypes) => {
           <p className="w-16 text-gray-color">Client</p>
         </div>
         <div className="flex flex-col justify-center">
-          <button onClick={() => setViewAppointmentDetails(false)}>
+          <button onClick={() => {
+            setViewAppointmentDetails(false);
+          }}>
             <SkewerIcon />
           </button>
         </div>
@@ -107,7 +118,7 @@ const AppointmentDetails = (props: AppointmentTypes) => {
         <span className="font-bold uppercase text-gray-color">Pet Details</span>
         <div className="flex pt-5">
           <div className="rounded-full h-14 w-14 bg-cover mr-4 bg-center" style={{
-              backgroundImage: `url("${pet.image}")`,
+              backgroundImage: `url("${pet.image ? pet.image : "https://picsum.photos/200/200?random=6"}")`,
             }}/>
             <div className="flex flex-col justify-center mr-auto">
               <p className="text-2xl font-semibold">{pet.name}</p>
@@ -136,6 +147,21 @@ const AppointmentDetails = (props: AppointmentTypes) => {
           </div>}
       </div>
       <div className="flex flex-col border-b border-light-gray-color py-5 px-10">
+        <span className="font-bold uppercase text-gray-color">Appointment Details</span>
+        <div className="flex mt-4">
+          <div className="flex"><CalendarIcon className={`mr-2 ${styles.svgFillGray}`}/> <p className="w-16 text-gray-color">Date</p></div>
+          <div className="pl-4">{appointmentDate.date || moment(appointmentDate.start).format('MM/DD/yyyy')}</div>
+        </div>
+        <div className="flex mt-4">
+          <div className="flex"><BellIcon className={`mr-2 ${styles.svgStrokeGray}`}/> <p className="w-16 text-gray-color">Time</p></div>
+          <div className="pl-4">{moment(appointmentDate.start).format('hh:mm a')} - {moment(appointmentDate.end).format('hh:mm a')}</div>
+        </div>
+        <div className="flex mt-4">
+          <div className="flex"><VaccinationIcon className={`mr-2 ${styles.svgFillGray}`}/> <p className="w-16 text-gray-color">Type</p></div>
+          <div className="pl-4">{appointmentType}</div>
+        </div>
+      </div>
+      <div className="flex flex-col border-b border-light-gray-color py-5 px-10">
         <span className="font-bold uppercase text-gray-color">Veterinarian Details</span>
         <div className="flex pt-5">
           <div className="rounded-full h-14 w-14 bg-cover mr-4 bg-center" style={{
@@ -161,7 +187,7 @@ const AppointmentDetails = (props: AppointmentTypes) => {
       </div>
       <div className="pt-5 text-center">
         <button className={`${styles.mainButton} w-4/5`} onClick={() => openEditForm()}>Reschedule Appointment</button>
-        <button className={`${styles.hollowButton} w-4/5 my-4`}>Cancel Appointment</button>
+        <button className={`${styles.hollowButton} w-4/5 my-4`} onClick={() => deleteAppointment(id as string)}>Cancel Appointment</button>
       </div>
     </aside>
   )

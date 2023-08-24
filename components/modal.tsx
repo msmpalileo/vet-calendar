@@ -16,6 +16,7 @@ const Modal = (props: ModalPropsType) => {
     <div className={`${styles.modal} ${modalClassName} transition-all duration-200 ease-linear`} style={{
       opacity: isActive ? 100 : 0,
       zIndex: isActive ? 999 : -1,
+      maxWidth: '800px',
     }}>
       <div className={styles.modalBackground} />
       <div className={styles.modalBody}>

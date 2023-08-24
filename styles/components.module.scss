@@ -178,10 +178,12 @@
 }
 
 .scheduleConsultation {
+  position: relative;
   border: 2px solid $consultation-color;
   background: $consultation-accent-color;
   border-radius: 12px;
   transition: $base-transition;
+  z-index: 10;
 
   p {
     transition: $base-transition;
@@ -209,10 +211,12 @@
 }
 
 .scheduleVaccination {
+  position: relative;
   border: 2px solid $vaccination-color;
   background: $vaccination-accent-color;
   border-radius: 12px;
   transition: $base-transition;
+  z-index: 10;
 
   p {
     transition: $base-transition;
@@ -249,6 +253,18 @@
 .svgFillOrange {
   svg, path {
     fill: $vaccination-color;
+  }
+}
+
+.svgStrokeGray {
+  svg, path {
+    stroke: $gray-color;
+  }
+}
+
+.svgFillGray {
+  svg, path {
+    fill: $gray-color;
   }
 }
 

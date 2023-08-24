@@ -86,6 +86,7 @@ const SideBar = () => {
     <aside
       className='bg-primary-color flex flex-col transition-all duration-200 ease-linear'
       style={{
+        minWidth: isMini ? "120px" : "240px",
         width: isMini ? "120px" : "240px",
       }}
     >

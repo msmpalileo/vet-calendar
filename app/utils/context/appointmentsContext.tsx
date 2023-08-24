@@ -1,6 +1,7 @@
 "use client"
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import moment from 'moment';
+import FuzzySearch from 'fuzzy-search';
 
 //Types
 import { AppointmentTypes } from "@/types/appointments";
@@ -14,7 +15,7 @@ type AppointmentContextType = {
   selectedAppointment: AppointmentTypes;
   setSelectedAppointment: (value: AppointmentTypes) => void;
   updateAppointments: () => void;
-  deleteAppointment: () => void;
+  deleteAppointment: (value: string) => void;
   createAppointment: (value: AppointmentTypes) => void;
   viewAppointmentDetails: boolean;
   setViewAppointmentDetails: (value: boolean) => void;
@@ -26,6 +27,11 @@ type AppointmentContextType = {
   resetFormValues: () => void;
   isEdit: boolean;
   setIsEdit: (value: boolean) => void;
+  removeSelectedAppointment: () => void;
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+  searchResults: AppointmentTypes[];
+  setSearchResults: (value: AppointmentTypes[]) => void;
 }
 
 type AppointmentProviderProps = {
@@ -109,13 +115,18 @@ export const AppointmentsContext = createContext<AppointmentContextType>({
   resetFormValues: () => {},
   isEdit: false,
   setIsEdit: () => {},
+  removeSelectedAppointment: () => {},
+  searchValue: "",
+  setSearchValue: () => {},
+  searchResults: [],
+  setSearchResults: () => {},
 })
 
 const defaultFormValues = {
   id: "",
   slots: [],
   appointmentDate: {
-    date: moment(new Date()).format("MM-DD-yyyy").toString(),
+    date: moment(new Date()).format("MM/DD/yyyy").toString(),
     start: "",
     end: "",
   },
@@ -183,6 +194,8 @@ const SessionProvider = (props: AppointmentProviderProps) => {
   const [showAppointmentForm, setShowAppointmentForm] = useState<boolean>(false);
   const [appointmentFormValues, setAppointmentFormValues] = useState<AppointmentTypes>(defaultFormValues);
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<AppointmentTypes[]>([]);
 
   // useEffect(() => {
   //   const slots: SlotType[] = getSlots(appointmentFormValues.appointmentDate.date as string);
@@ -214,6 +227,9 @@ const SessionProvider = (props: AppointmentProviderProps) => {
     }
   }
 
+  const removeSelectedAppointment = () => {
+    setSelectedAppointment(defaultFormValues);
+  }
 
   const createAppointment = (updatedFormValues: AppointmentTypes) => {
     if(isEdit) {
@@ -222,15 +238,36 @@ const SessionProvider = (props: AppointmentProviderProps) => {
       updatedAppointments.splice(index, 1);
       updatedAppointments.push(updatedFormValues);
       setAppointments([...updatedAppointments]);
-      console.log(`Edited`)
     } else {
       setAppointments([...appointments, updatedFormValues]);
-      console.log(`New Added`)
+      setAppointmentFormValues({...updatedFormValues});
     }
-
-    console.log([...appointments, updatedFormValues]);
-    
   };
+
+  useEffect(() => {
+    if(searchValue) {
+      setViewAppointmentDetails(false);
+      setSelectedAppointment(defaultFormValues);
+
+      const searcher = new FuzzySearch(appointments, 
+        [
+          'appointmentDate.date',
+          'appointmentDate.start',
+          'appointmentDate.end',
+          'appointmentType',
+          'veterinary.veterinary_name',
+          'client.name',
+          'pet.name',
+          'pet.type',
+          'pet.breed',
+        ],
+      );
+
+      const results = searcher.search(searchValue);
+      setSearchResults([...results]);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValue])
 
   const resetFormValues = () => {
     setAppointmentFormValues({...defaultFormValues});
@@ -238,7 +275,17 @@ const SessionProvider = (props: AppointmentProviderProps) => {
 
   const updateAppointments = () => {};
 
-  const deleteAppointment = () => {};
+  const deleteAppointment = (id: string) => {
+    let text = "Are you sure you want to cancel this appointment?";
+    if (confirm(text) == true) {
+    const index = appointments.findIndex((appointment) => appointment.id === id);
+    let updatedAppointments = appointments;
+    updatedAppointments.splice(index, 1);
+    setAppointments([...updatedAppointments]);
+    setViewAppointmentDetails(false);
+    setSelectedAppointment(defaultFormValues);
+    }
+  };
 
   const values = {
     appointments,
@@ -258,6 +305,11 @@ const SessionProvider = (props: AppointmentProviderProps) => {
     resetFormValues,
     isEdit,
     setIsEdit,
+    removeSelectedAppointment,
+    searchValue, 
+    setSearchValue,
+    searchResults,
+    setSearchResults,
   };
 
   return (
