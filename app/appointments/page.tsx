@@ -311,56 +311,56 @@ export default function Appointments() {
               }}/>
           </div>
         ): (
-          // <>
-          //   <section className="flex py-5 px-10 border-b border-b-light-gray h-36">
-          //     <div>
-          //       <span className="text-gray">Appointments for {month.label}</span>
-          //       <div>
-          //       <p className="text-2xl font-bold mr-3 inline-block w-56">{stringDate}</p>
-          //         <button className={styles.iconButton} onClick={() => {
-          //           prevDay();
-          //           removeSelectedAppointment();
-          //           setViewAppointmentDetails(false);
-          //         }}>
-          //           <ChevronLeftIcon />
-          //         </button>
-          //         <button className={styles.iconButton} onClick={() => {
-          //           nextDay();
-          //           removeSelectedAppointment();
-          //           setViewAppointmentDetails(false);
-          //         }}>
-          //           <ChevronLeftIcon className="rotate-180"/>
-          //         </button>
-          //       </div>
-          //       {/* <span className="text-gray">{month.label}</span> */}
-          //       <button className="text-accent hover:text-accent-color text-xs" onClick={() => today()}>Jump to Today</button>
-          //     </div>
-          //     <button
-          //       className={`${styles.mainButton} ml-auto my-auto`}
-          //       onClick={() => {
-          //         setShowAppointmentForm(true);
-          //         removeSelectedAppointment();
-          //         setViewAppointmentDetails(false);
-          //       }}
-          //     >
-          //       New Appointment
-          //     </button>
-          //   </section>
-          //   <section className="flex">
-          //     <div className="flex-grow overflow-y-scroll"
-          //       style={{
-          //         height: "calc(100vh - 114px - 144px)"
-          //       }}
-          //     >
-          //       {ShowDailyCalendar()}
-          //     </div>
-          //     <AppointmentDetails {...selectedAppointment}
-          //       wrapperStyle={{
-          //         height: "calc(100vh - 114px - 144px)"
-          //     }}/>
-          //   </section>
-          // </>
-          <MonthlyView/>
+          <>
+            <section className="flex py-5 px-10 border-b border-b-light-gray h-36">
+              <div>
+                <span className="text-gray">Appointments for {month.label}</span>
+                <div>
+                <p className="text-2xl font-bold mr-3 inline-block w-56">{stringDate}</p>
+                  <button className={styles.iconButton} onClick={() => {
+                    prevDay();
+                    removeSelectedAppointment();
+                    setViewAppointmentDetails(false);
+                  }}>
+                    <ChevronLeftIcon />
+                  </button>
+                  <button className={styles.iconButton} onClick={() => {
+                    nextDay();
+                    removeSelectedAppointment();
+                    setViewAppointmentDetails(false);
+                  }}>
+                    <ChevronLeftIcon className="rotate-180"/>
+                  </button>
+                </div>
+                {/* <span className="text-gray">{month.label}</span> */}
+                <button className="text-accent hover:text-accent-color text-xs" onClick={() => today()}>Jump to Today</button>
+              </div>
+              <button
+                className={`${styles.mainButton} ml-auto my-auto`}
+                onClick={() => {
+                  setShowAppointmentForm(true);
+                  removeSelectedAppointment();
+                  setViewAppointmentDetails(false);
+                }}
+              >
+                New Appointment
+              </button>
+            </section>
+            <section className="flex">
+              <div className="flex-grow overflow-y-scroll"
+                style={{
+                  height: "calc(100vh - 114px - 144px)"
+                }}
+              >
+                {ShowDailyCalendar()}
+              </div>
+              <AppointmentDetails {...selectedAppointment}
+                wrapperStyle={{
+                  height: "calc(100vh - 114px - 144px)"
+              }}/>
+            </section>
+          </>
+          // <MonthlyView/>
         )}
         
       </main>
