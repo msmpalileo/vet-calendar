@@ -93,7 +93,7 @@ export default function Appointments() {
     }
   }
 
-  const ShowDailyCalendar = () => {
+  const ShowCalendar = () => {
     const mapTimeSlots = () => {
       return slots.map((slot, index) => {
         if(slot.number % 2 === 0) {
@@ -130,6 +130,9 @@ export default function Appointments() {
                         onClick={() => {
                           if(viewAppointmentDetails && selectedAppointment.id === appointment.id) {
                             setViewAppointmentDetails(false);
+                            setTimeout(() => {
+                              removeSelectedAppointment();
+                            }, 200)
                           } else if (appointment) {
                             setSelectedAppointment(appointment);
                             setViewAppointmentDetails(true);
@@ -228,15 +231,9 @@ export default function Appointments() {
     ))
   }
 
-  const ShowMonthlyCalendar = () => {
-    return (
-      <>Henllo</>
-    )
-  }
 
   const MonthlyView = () => (
-    <>
-      <section className="flex py-5 px-10 border-b border-b-light-gray h-36">
+    <section className="flex py-5 px-10 border-b border-b-light-gray h-36">
         <div>
           <span className="text-gray">Appointments for {month.label} {month.year}</span>
           <div className="mt-2">
@@ -270,20 +267,6 @@ export default function Appointments() {
           New Appointment
         </button>
       </section>
-      <section className="flex">
-        <div className="flex-grow overflow-y-scroll"
-          style={{
-            height: "calc(100vh - 114px - 144px)"
-          }}
-        >
-          {ShowMonthlyCalendar()}
-        </div>
-        <AppointmentDetails {...selectedAppointment}
-          wrapperStyle={{
-            height: "calc(100vh - 114px - 144px)"
-        }}/>
-      </section>
-    </>
 
   )
 
@@ -352,7 +335,7 @@ export default function Appointments() {
                   height: "calc(100vh - 114px - 144px)"
                 }}
               >
-                {ShowDailyCalendar()}
+                {ShowCalendar()}
               </div>
               <AppointmentDetails {...selectedAppointment}
                 wrapperStyle={{
