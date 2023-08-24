@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useContext } from 'react';
+import { usePathname } from 'next/navigation'
 
 //Styles
 import styles from "@/styles/components.module.scss";
@@ -22,24 +23,29 @@ const Header = () => {
     searchValue,
     setSearchValue,
   } = useContext(AppointmentsContext);
+  const path = usePathname();
 
   return (
     <header className={styles.header}>
         <div className="grow mr-10 flex relative">
-            <input 
-              type="text" 
-              placeholder="Search" 
-              className={styles.searchBar} 
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-            />
-            <Image
-              src={SearchIcon}
-              alt='Search'
-              height={20}
-              width={20}
-              className={styles.searchIcon}
-            />
+          {path === "/appointments" && (
+            <>
+              <input 
+                type="text" 
+                placeholder="Search" 
+                className={styles.searchBar} 
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+              />
+              <Image
+                src={SearchIcon}
+                alt='Search'
+                height={20}
+                width={20}
+                className={styles.searchIcon}
+              />
+            </>
+          )}
         </div>
         <button className={styles.user}>
           <Image
