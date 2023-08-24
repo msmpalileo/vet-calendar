@@ -13,7 +13,7 @@ import AppointmentsContextProvider from "./utils/context/appointmentsContext";
 import UtilsContextProvider from "./utils/context/utilsContext";
 
 export const metadata: Metadata = {
-  title: "Lorem Veterinary Calendar",
+  title: "Lorem - Miguel Sandino M. Palileo",
   description: "Senior React Developer Job Examination by Miguel Sandino M. Palileo",
 };
 
